@@ -145,7 +145,9 @@ class DuplicatesPlugin(BeetsPlugin):
         self.register_listener("import_task_created", self.import_task_created)
 
     def import_task_created(self, task, session):
-        if self.config["dedupe_mb_trackid_on_import"].get(bool):
+        if "dedupe_mb_trackid_on_import" in self.config and self.config[
+            "dedupe_mb_trackid_on_import"
+        ].get(bool):
             return self._dedupe_task_on_mb_trackid(task, session)
 
     def _dedupe_task_on_mb_trackid(self, task, session):
